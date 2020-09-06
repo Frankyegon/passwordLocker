@@ -1,5 +1,7 @@
 #!/usr/bin/env python3.8
 
+import random
+import pyperclip
 from password import Details
 
 def create_details(aname,uname,passw,email):
@@ -53,11 +55,12 @@ def main():
     print('\n')
 
     while True:
-                    print("Use these short codes : cc - create a new user details, dc - display user detailss, fc -find a user details, ex -exit the user details list ")
+                    print("Use these short codes : cc - create a new user details, dc - display user detailss, fc -find a user details, copy - copy password, ex -exit the user details list ")
 
                     short_code = input().lower()
 
                     if short_code == 'cc':
+                        
                             print("New user details")
                             print("-"*10)
 
@@ -68,11 +71,24 @@ def main():
                             u_name = input()
 
                             print("Password ...")
-                            p_word = input()
+
+                            enter_pass = input("for password; enter type/generate:  ").lower()
+
+                            if enter_pass == 'generate':
+
+                                s = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+?:><}{[]~`"
+                                len_password = int (input("enter number of letters in password:"))
+                                p_word = "".join(random.sample(s,len_password))
+
+                            elif enter_pass == 'type':
+                                p_word = input("type your password: ")
+                            
+                            else:
+                                print("for password; either answer type or generate:  ")
+
 
                             print("Email address ...")
                             e_address = input()
-
 
                             save_details(create_details(a_name,u_name,p_word,e_address)) # create and save new user details.
                             print ('\n')
@@ -86,9 +102,7 @@ def main():
                                     print('\n')
 
                                     for details in display_details():
-                                            print(f"account name: {details.account_name}\n user name: {details.user_name}\n password:  {details.pass_word}")
-
-                                    print('\n')
+                                            print(f"account name: {details.account_name}\n user name: {details.user_name}\n password:  {details.pass_word}\n email: {details.email}")
                             else:
                                     print('\n')
                                     print("You dont seem to have any user details saved yet")
@@ -107,9 +121,15 @@ def main():
                                     print(f"Username: {search_details.user_name}")
                                     print(f"Password: {search_details.pass_word}")
                                     print(f"Email address:  {search_details.email}")
+
+                                    pyperclip.copy(search_details.pass_word)
+                                    #copy_email
+
+                                    print(f"password has been copied")
                             else:
                                     print("That account name does not exist")
 
+                    
                     elif short_code == "ex":
                             print("Bye .......")
                             break
