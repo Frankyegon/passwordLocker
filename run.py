@@ -55,7 +55,7 @@ def main():
     print('\n')
 
     while True:
-                    print("Use these short codes : cc - create a new user details, dc - display user detailss, fc -find a user details, copy - copy password, ex -exit the user details list ")
+                    print("Use these short codes : cc - create a new user details, dc - display user detailss, fc -find a user details, ex -exit the user details list ")
 
                     short_code = input().lower()
 
