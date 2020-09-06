@@ -22,10 +22,10 @@ class TestDetails(unittest.TestCase):
         test_init test case to test if the object is initialized properly
         '''
 
-        self.assertEqual(self.new_details.account_name,"James")
-        self.assertEqual(self.new_details.user_name,"Muriuki")
-        self.assertEqual(self.new_details.pass_word,"0712345678")
-        self.assertEqual(self.new_details.email,"james@ms.com")
+        self.assertEqual(self.new_details.account_name,"twitter")
+        self.assertEqual(self.new_details.user_name,"Frankyegon")
+        self.assertEqual(self.new_details.pass_word,"password")
+        self.assertEqual(self.new_details.email,"frank@ms.com")
 
     def test_save_details(self):
         '''
@@ -65,16 +65,16 @@ class TestDetails(unittest.TestCase):
             self.new_details.delete_details()# Deleting a user details object
             self.assertEqual(len(Details.details_list),1)
 
-    def test_find_details_by_number(self):
+    def test_find_details_by_account(self):
         '''
-        test to check if we can find a user details by phone number and display information
+        test to check if we can find a user details by account name and display information
         '''
 
         self.new_details.save_details()
         test_details = Details("Test","user","0711223344","test@user.com") # new user details
         test_details.save_details()
 
-        found_details = Details.find_by_number("0711223344")
+        found_details = Details.find_by_account("0711223344")
 
         self.assertEqual(found_details.email,test_details.email)
 
