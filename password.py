@@ -63,10 +63,9 @@ class Details:
         return cls.details_list
 
     @classmethod
-    def copy_email(cls,number):
+    def copy_email(cls,email):
         details_found = Details.find_by_account(account)
-        pyperclip.copy(details_found.password)
-
+        pyperclip.copy(details_found.email)
 
     def __init__(self,account_name,user_name,password,email):
 
@@ -76,3 +75,5 @@ class Details:
         self.user_name = user_name
         self.pass_word = password
         self.email = email
+
+
